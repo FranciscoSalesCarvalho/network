@@ -2,6 +2,19 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.appolo)
+    alias(libs.plugins.devtools.ksp)
+    alias(libs.plugins.hilt)
+}
+
+apollo {
+    service("service") {
+        packageName.set("com.francisco")
+        introspection {
+            endpointUrl.set("https://countries.trevorblades.com/graphql")
+            schemaFile.set(file("src/main/graphql/com/francisco/schema.graphqls"))
+        }
+    }
 }
 
 android {
@@ -49,6 +62,13 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
+    implementation(libs.apollo.runtime)
+
+    implementation(libs.dagger.hilt)
+    ksp(libs.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
