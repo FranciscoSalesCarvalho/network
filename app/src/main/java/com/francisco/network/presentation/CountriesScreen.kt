@@ -24,9 +24,10 @@ import com.francisco.network.domain.SimpleCountry
 fun CountriesScreen(
     state: CountriesViewModel.CountriesState,
     onSelectCountry: (code: String) -> Unit,
-    onDismissCountryDialog: () -> Unit
+    onDismissCountryDialog: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = modifier.fillMaxSize()) {
         if(state.isLoading) {
             CircularProgressIndicator(
                 modifier = Modifier.align(Alignment.Center)
